@@ -76,6 +76,11 @@ public static class Routes {
             }
             return Results.Json(result);
         });
+        
+        app.MapGet("/university-cafes-data", (IFoodService foodService) => {
+            var results = foodService.GetCafeData();
+            return Results.Json(results);
+        });
     }
 }
 

@@ -25,6 +25,19 @@ public class FoodService : IFoodService{
 
         return modelResponse;
     }
+
+    public CafeDataResponse GetCafeData() {
+        return new CafeDataResponse(new List<CafeData>() {
+            new CafeData("40 George Square",
+                new OpeningTime("Mon - Fri: 08:30 - 18:00", "Mon - Fri: 08:30 - 16:00"),
+                "https://grabandgo.mysaffronportal.com/",
+                new CafeLocation(55.943525712211176, -3.1862164945065525))
+        });
+    }
 }
 
 public record ModelResponse(string Prediction);
+public record CafeDataResponse(List<CafeData> CafeData);
+public record CafeData(string Address, OpeningTime OpeningTime, string MenuUrl, CafeLocation CafeLocation);
+public record OpeningTime(string TermTime, string NonTermTime);
+public record CafeLocation(double Latitude, double Longitude);
