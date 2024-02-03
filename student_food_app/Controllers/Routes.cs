@@ -81,6 +81,14 @@ public static class Routes {
             var results = foodService.GetCafeData();
             return Results.Json(results);
         });
+
+        app.MapGet("/monthly-nutrient-summary", async (IUserService userService, UserManager<User> userManager, HttpContext httpContext) => {
+            var user = await userManager.GetUserAsync(httpContext.User);
+            if (user is null) { 
+                return Results.NotFound("user not found"); 
+            }
+            return Results.Json(userService.GetMonthlyNutrientSummary(user.Id));
+        });
     }
 }
 

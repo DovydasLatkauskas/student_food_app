@@ -12,4 +12,5 @@ public interface IUserService {
     void SaveRecipe(string userId, Recipe recipe);
     void SaveMeal(string userId, Meal meal);
     List<Meal> GetUserMeals(string userId);
+    List<NutrientSummaryResponse> GetMonthlyNutrientSummary(string userId);
 }

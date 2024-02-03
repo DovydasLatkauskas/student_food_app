@@ -87,4 +87,26 @@ public class UserService : IUserService {
         user.Meals.Add(meal);
         _context.SaveChanges();
     }
+
+    public List<NutrientSummaryResponse> GetMonthlyNutrientSummary(string userId) {
+        List<Meal> meals = GetUserMeals(userId);
+
+        return meals
+            .GroupBy(meal => meal.MealTime.Month)
+            .Select(group => new NutrientSummaryResponse {
+                Month = group.Key,
+                TotalNutrients = new Nutrients {
+                    Protein = group.Sum(meal => meal.Nutrients.Protein),
+                    Fat = group.Sum(meal => meal.Nutrients.Fat),
+                    Carbohydrates = group.Sum(meal => meal.Nutrients.Carbohydrates),
+                    Sugar = group.Sum(meal => meal.Nutrients.Sugar),
+                    Sodium = group.Sum(meal => meal.Nutrients.Sodium)
+                }
+            }).ToList();
+    }
+}
+
+public record NutrientSummaryResponse {
+    public int Month { get; init; }
+    public Nutrients TotalNutrients { get; init; }
 }
