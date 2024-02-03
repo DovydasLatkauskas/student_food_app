@@ -39,7 +39,8 @@ export const Signin = () => {
 							body: JSON.stringify(data)
 						})
 						if(response.ok){
-							// console.log(response.)
+							let token = await response.json();
+							localStorage.setItem("token", token.accessToken);
 							navigate("/")
 						} else {
 							window.alert("incorrect login credentials");
