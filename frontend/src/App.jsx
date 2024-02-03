@@ -4,6 +4,7 @@ import {Signin} from "./auth/Signin.jsx";
 import {Signup} from "./auth/Signup.jsx";
 import {Home} from "./pages/Home.jsx";
 import {MyRecipes} from "./pages/MyRecipes.jsx";
+import {Cafes} from "./pages/Cafes.jsx";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -12,6 +13,7 @@ const router = createBrowserRouter(
             <Route path="/signin" element={<Signin/>}/>
             <Route path="/signup" element={<Signup/>}/>
             <Route path="/my_recipes" element={<MyRecipes/>}/>
+            <Route path="/cafes" element={<Cafes/>}/>
         </>
     )
 )
