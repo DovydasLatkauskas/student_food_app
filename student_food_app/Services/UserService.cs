@@ -82,6 +82,8 @@ public class UserService : IUserService {
         if (user is null) {
             return;
         }
+
+        user.Meals = GetUserMeals(user.Id);
         user.Meals.Add(meal);
         _context.SaveChanges();
     }
