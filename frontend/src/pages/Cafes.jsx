@@ -33,9 +33,6 @@ export const Cafes = () => {
 	useEffect(() => {
 			if (userLocation) {
 				const newSortedCafes = [...cafes].sort((a, b) => {
-					console.log(a)
-					console.log(b)
-
 					const distanceToA = calculateDistance(userLocation, a.cafeLocation);
 					const distanceToB = calculateDistance(userLocation, b.cafeLocation);
 					return distanceToA - distanceToB;
@@ -51,26 +48,26 @@ export const Cafes = () => {
 			return distance;
 		}
 	return (
-		<div className="">
-            <ul>
+		<div className="p-6 overflow-y-auto h-screen">
+			<ul className="space-y-4">
 				{sortedCafes.map((cafe) => {
 					const { name, address, openingTime, menuUrl, cafeLocation } = cafe;
 					let distance = 0;
 					if (cafeLocation) {
 						distance = calculateDistance(userLocation, cafeLocation);
 					}
-						return (
-						<li key={name}>
-							<h2>{name}</h2>
-							<p>{address}</p>
+					return (
+						<li key={name} className="border p-4 rounded-lg">
+							<h2 className="text-xl font-bold">{name}</h2>
+							<p className="text-sm">{address}</p>
 							<p>Term Opening Time: {openingTime.termTime}</p>
 							<p>Non-Term Opening Time: {openingTime.nonTermTime}</p>
-							<a href={menuUrl}>Menu</a>
-							<p>Distance: {distance.toFixed(2)}</p>
+							<a href={menuUrl} className="text-blue-500">Menu</a>
+							<p>Distance: {(distance * 100000).toFixed(0)} meters</p>
 						</li>
 					);
 				})}
-            </ul>
+			</ul>
 		</div>
 	)
 }

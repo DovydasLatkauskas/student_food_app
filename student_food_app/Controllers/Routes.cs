@@ -75,7 +75,7 @@ public static class Routes {
                 return Results.Problem("error reading image");
             }
             return Results.Json(result);
-        });
+        }).DisableAntiforgery();
         
         app.MapGet("/university-cafes-data", (IFoodService foodService) => {
             var results = foodService.GetCafeData();
