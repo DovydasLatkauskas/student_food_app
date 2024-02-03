@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react";
+import {Cursor} from "../components/Cursor.jsx";
 
 export const Cafes = () => {
 	const [cafes, setCafes] = useState([]);
@@ -48,7 +49,8 @@ export const Cafes = () => {
 			return distance;
 		}
 	return (
-		<div className="p-6 overflow-y-auto h-screen">
+		<div className="p-6 overflow-y-auto h-screen bg-gray-900 text-white">
+			<Cursor/>
 			<ul className="space-y-4">
 				{sortedCafes.map((cafe) => {
 					const { name, address, openingTime, menuUrl, cafeLocation } = cafe;
@@ -57,12 +59,12 @@ export const Cafes = () => {
 						distance = calculateDistance(userLocation, cafeLocation);
 					}
 					return (
-						<li key={name} className="border p-4 rounded-lg">
+						<li key={name} className="border border-gray-800 p-4 rounded-lg bg-gray-800">
 							<h2 className="text-xl font-bold">{name}</h2>
 							<p className="text-sm">{address}</p>
 							<p>Term Opening Time: {openingTime.termTime}</p>
 							<p>Non-Term Opening Time: {openingTime.nonTermTime}</p>
-							<a href={menuUrl} className="text-blue-500">Menu</a>
+							<a href={menuUrl} className="text-blue-400">Menu</a>
 							<p>Distance: {(distance * 100000).toFixed(0)} meters</p>
 						</li>
 					);
