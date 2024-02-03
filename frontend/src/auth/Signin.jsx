@@ -31,7 +31,7 @@ export const Signin = () => {
 
 						const data = { email: emailRef.current.value, password: passwordRef.current.value };
 
-						let response = await fetch('http://localhost:5116/login?useCookies=true', {
+						let response = await fetch('http://localhost:5116/login', {
 							method: 'POST',
 							headers: {
 								'Content-Type': 'application/json',
@@ -39,6 +39,7 @@ export const Signin = () => {
 							body: JSON.stringify(data)
 						})
 						if(response.ok){
+							// console.log(response.)
 							navigate("/")
 						} else {
 							window.alert("incorrect login credentials");
