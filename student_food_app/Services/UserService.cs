@@ -66,6 +66,8 @@ public class UserService : IUserService {
         if (user is null) {
             return;
         }
+
+        user.SavedRecipes = GetUserRecipes(user.Id);
         user.SavedRecipes.Add(recipe);
         _context.SaveChanges();
     }
